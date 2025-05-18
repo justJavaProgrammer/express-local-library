@@ -1,0 +1,24 @@
+doctype html
+html(lang="en")
+  head
+    title= title
+    style.
+      h1 {
+        color: blue;
+        text-decoration: underline;
+      }
+    style.
+      li {
+        color: green
+      }
+    script(type='text/javascript').
+  body
+    h1= title
+
+    #{title}
+
+    p This page is displayed using pug
+
+    ul
+      each val in items
+        li= val

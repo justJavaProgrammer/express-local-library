@@ -2,4 +2,16 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p Вітаємо в #[em LocalLibrary], сайт написаний на Express який розробляється як приклад розробниками з Mozilla Developer Network
+
+  h2 Динамічний контент
+
+  p Бібліотека має наступну кількість записів:
+
+  ul
+    li #[strong Книги:] !{book_count}
+    li #[strong Всього копій книг:] !{book_instance_count}
+    li #[strong Всього копій книг доступно:] !{book_instance_available_count}
+    li #[strong Автори:] !{author_count}
+    li #[strong Жанри:] !{genre_count}
+

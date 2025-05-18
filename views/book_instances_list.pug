@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    h1= title
+    if book_list.length
+        ul
+            each instance in book_list
+                - let statusClass = ''
+                if instance.status === 'Available'
+                    - statusClass = 'text-success'
+                else if instance.status === 'Maintenance'
+                    - statusClass = 'text-danger'
+                else
+                    - statusClass = 'text-warning'
+
+                li
+                    a(href=instance.book.url) #{instance.book.title}
+                    |  (
+                    span(class=statusClass)= instance.status
+                    | )
+                    if instance.status !== 'Available'
+                        span  (Due: #{instance.due_back_formatted} )
+    else
+        p There are no books.
