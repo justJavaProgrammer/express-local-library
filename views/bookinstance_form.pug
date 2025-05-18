@@ -1,0 +1,45 @@
+extends layout
+
+block content
+    h1= title
+
+    form(method='POST')
+        div.form-group
+            label(for='book') Книга:
+            select#book.form-control(name='book', required)
+                option(value='') -- Виберіть книгу --
+                if book_list
+                    each book in book_list
+                        option(value=book._id)= book.title
+                else
+                    option(disabled) (Книги не знайдено)
+
+        div.form-group
+            label(for='imprint') Видавництво:
+            input#imprint.form-control(
+                type='text',
+                name='imprint',
+                placeholder='Видавництво',
+                required
+            )
+
+        div.form-group
+            label(for='status') Статус:
+            select#status.form-control(name='status', required)
+                - const statuses = ['Maintenance', 'Available', 'Loaned', 'Reserved']
+                each statusOption in statuses
+                    option(value=statusOption)= statusOption
+
+        div.form-group
+            label(for='due_back') Повернути до:
+            input#due_back.form-control(
+                type='date',
+                name='due_back'
+            )
+
+        button.btn.btn-primary(type='submit') Зберегти
+
+    if errors
+        ul
+            each error in errors
+                li!= error.msg
